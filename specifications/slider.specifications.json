@@ -1,0 +1,289 @@
+{
+    "Component": "Slider",
+    "Package": "slider",
+    "Description": "The Slider component is an input control that allows users to select a value from a range by dragging a thumb along a track.",
+    "Tag": "slider-input",
+    "Composition": {
+      "template": {
+        "description": "The HTML template for the slider component.",
+        "contains": ["slider-container"],
+        "type": "template",
+        "id": "slider-input"
+      },
+      "slider-container": {
+        "description": "The main container that wraps the slider track, thumb, and value display.",
+        "contains": ["slider-wrapper", "value-display"],
+        "type": "div",
+        "class": "slider-container"
+      },
+      "slider-wrapper": {
+        "description": "Wrapper for the track and thumb elements.",
+        "contains": ["track", "thumb"],
+        "type": "div",
+        "class": "slider-wrapper"
+      },
+      "track": {
+        "description": "The track container that represents the range from min to max.",
+        "contains": ["fill"],
+        "type": "div",
+        "class": "track"
+      },
+      "fill": {
+        "description": "The filled portion of the track representing the current value position.",
+        "contains": [],
+        "type": "div",
+        "class": "fill"
+      },
+      "thumb": {
+        "description": "The draggable handle that represents the current value and can be dragged to change the value.",
+        "contains": [],
+        "type": "div",
+        "class": "thumb"
+      },
+      "value-display": {
+        "description": "Displays the current value of the slider next to the track.",
+        "contains": [],
+        "type": "span",
+        "class": "value-display"
+      }
+    },
+    "States": {
+      "value": {
+        "type": "Number",
+        "description": "The current value of the slider. Must be between min and max, and will be adjusted to the nearest step if step is defined.",
+        "values": "number (min <= value <= max)",
+        "default": 0,
+        "attribute": {
+          "optional": false,
+          "readonly": false,
+          "initialize": true
+        }
+      },
+      "min": {
+        "type": "Number",
+        "description": "The minimum value of the slider range.",
+        "values": "number",
+        "default": 0,
+        "attribute": {
+          "optional": true,
+          "readonly": false,
+          "initialize": true
+        }
+      },
+      "max": {
+        "type": "Number",
+        "description": "The maximum value of the slider range.",
+        "values": "number",
+        "default": 100,
+        "attribute": {
+          "optional": true,
+          "readonly": false,
+          "initialize": true
+        }
+      },
+      "step": {
+        "type": "Number",
+        "description": "The step interval for value changes. When defined, the value will snap to multiples of this step. If not set, the value can be any number between min and max.",
+        "values": "number > 0",
+        "default": null,
+        "attribute": {
+          "optional": true,
+          "readonly": false,
+          "initialize": false
+        }
+      },
+      "state": {
+        "type": "String",
+        "description": "State of the slider (enabled, disabled).",
+        "values": ["enabled", "disabled"],
+        "default": "enabled",
+        "attribute": {
+          "optional": true,
+          "readonly": false,
+          "initialize": true
+        }
+      },
+      "visible": {
+        "type": "Visibility",
+        "description": "Indicates whether the slider is visible. Visibility is assumed by default; absence of the attribute is equivalent to 'yes'.",
+        "values": ["yes", "no"],
+        "default": "yes",
+        "attribute": {
+          "optional": true,
+          "readonly": false,
+          "initialize": false
+        }
+      }
+    },
+    "Operations": {
+      "setValue": {
+        "description": "Sets the slider value to a specific number. The value will be clamped to the min-max range and adjusted to the nearest step if step is defined.",
+        "parameters": [
+          {
+            "name": "value",
+            "type": "number",
+            "description": "The value to set. Will be clamped between min and max.",
+            "required": true
+          }
+        ],
+        "returns": "void"
+      },
+      "show": {
+        "description": "Sets the 'visible' state to 'yes', making the slider visible.",
+        "parameters": [],
+        "returns": "void"
+      },
+      "hide": {
+        "description": "Sets the 'visible' state to 'no', hiding the slider.",
+        "parameters": [],
+        "returns": "void"
+      },
+      "enable": {
+        "description": "Sets the 'state' to 'enabled', enabling the slider for interaction.",
+        "parameters": [],
+        "returns": "void"
+      },
+      "disable": {
+        "description": "Sets the 'state' to 'disabled', disabling the slider from interaction.",
+        "parameters": [],
+        "returns": "void"
+      }
+    },
+    "Events": {
+      "onchange": {
+        "description": "Triggered when the slider value changes and the user has finished interacting (e.g., after releasing the mouse button or touch).",
+        "parameters": [
+          {
+            "name": "detail",
+            "type": "object",
+            "description": "Contains the new value and related information.",
+            "properties": {
+              "value": {
+                "type": "number",
+                "description": "The new value of the slider."
+              },
+              "min": {
+                "type": "number",
+                "description": "The minimum value of the slider range."
+              },
+              "max": {
+                "type": "number",
+                "description": "The maximum value of the slider range."
+              },
+              "step": {
+                "type": "number | null",
+                "description": "The step interval, or null if not defined."
+              }
+            }
+          }
+        ]
+      },
+      "onshow": {
+        "description": "Triggered when the slider becomes visible (state 'visible' changes to 'yes').",
+        "parameters": [
+          {
+            "name": "detail",
+            "type": "object",
+            "description": "Contains the new visibility state.",
+            "properties": {
+              "visible": {
+                "type": "Visibility",
+                "values": ["yes"]
+              }
+            }
+          }
+        ]
+      },
+      "onhide": {
+        "description": "Triggered when the slider is hidden (state 'visible' changes to 'no').",
+        "parameters": [
+          {
+            "name": "detail",
+            "type": "object",
+            "description": "Contains the new visibility state.",
+            "properties": {
+              "visible": {
+                "type": "Visibility",
+                "values": ["no"]
+              }
+            }
+          }
+        ]
+      },
+      "onenable": {
+        "description": "Triggered when the slider is enabled (state 'state' changes to 'enabled').",
+        "parameters": [
+          {
+            "name": "detail",
+            "type": "object",
+            "description": "Contains the new state.",
+            "properties": {
+              "state": {
+                "type": "String",
+                "values": ["enabled"]
+              }
+            }
+          }
+        ]
+      },
+      "ondisable": {
+        "description": "Triggered when the slider is disabled (state 'state' changes to 'disabled').",
+        "parameters": [
+          {
+            "name": "detail",
+            "type": "object",
+            "description": "Contains the new state.",
+            "properties": {
+              "state": {
+                "type": "String",
+                "values": ["disabled"]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "Gestures": {
+      "drag": {
+        "description": "Drag the thumb along the track to change the slider value. The value updates continuously while dragging.",
+        "triggers": {
+          "operation": "setValue",
+          "condition": "on element.thumb, mouse or touch drag"
+        },
+        "effects": {
+          "properties": ["value"],
+          "events": ["onchange"]
+        }
+      },
+      "click": {
+        "description": "Click on the track to set the slider value to the clicked position. The thumb will move to the clicked location.",
+        "triggers": {
+          "operation": "setValue",
+          "condition": "on element.track, click position"
+        },
+        "effects": {
+          "properties": ["value"],
+          "events": ["onchange"]
+        }
+      },
+      "keyboard": {
+        "description": "Use keyboard arrow keys to adjust the slider value when the slider is focused. Arrow Right/Up increases value by step, Arrow Left/Down decreases value by step.",
+        "triggers": {
+          "operation": "setValue",
+          "condition": "on element.slider, when focused, arrow keys"
+        },
+        "effects": {
+          "properties": ["value"],
+          "events": ["onchange"]
+        }
+      },
+      "hover": {
+        "description": "Change thumb appearance when hovered over. This is a visual-only gesture implemented via CSS and does not emit runtime events.",
+        "effects": {
+          "properties": ["background-color", "transform", "box-shadow"],
+          "condition": "on element.thumb"
+        }
+      }
+    }
+  }
+  
