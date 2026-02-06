@@ -1,5 +1,5 @@
-import { ComponentTemplate } from "@scalable.software/component.template";
+import { Slider } from "@scalable.software/slider";
 
-await ComponentTemplate.Template.load("component.template.html");
+await Slider.Template.load("slider.template.html");
 
-customElements.define(ComponentTemplate.Tag, ComponentTemplate);
+customElements.define(Slider.Tag, Slider);
