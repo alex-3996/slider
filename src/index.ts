@@ -7,6 +7,6 @@ export {
   Operation,
   Event,
   Gesture,
-} from "./component.meta.js";
+} from "./slider.meta.js";
 
-export { ComponentTemplate } from "./component.js";
+export { Slider } from "./slider.js";

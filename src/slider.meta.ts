@@ -2,7 +2,7 @@
  * @module Component
  */
 
-export const Tag = "slider" as const;
+export const Tag = "slider-component" as const;
 
 /**
  * HTML Attributes available to set

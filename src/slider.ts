@@ -16,17 +16,17 @@ export const configuration: Configuration = {
     id: Tag,
   },
   css: {
-    name: "pin.style.css",
+    name: "slider.styles.css",
   },
 } as const;
 
 /**
- * A pin button that can be:
- * 1. pinned and unpinned
+ * A slider that can be:
+ * 1. change value by dragging the thumb
  * 2. hidden and shown
  * @category Components
  */
-export class Pin extends Component {
+export class Slider extends Component {
   /**
    * The tag name of the component
    * @category Configuration
