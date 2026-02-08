@@ -60,6 +60,15 @@ export class Slider extends Component {
     super(configuration);
   }
 
+
+  /**
+   * Get and Sets the visibility of the pin button
+   * @category State
+   */
+  public get visible() {
+    return "";
+  }
+
   /**
    * List operations to perform for selected attributes being observed in the DOM.
    * @category Configuration
