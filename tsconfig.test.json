@@ -25,7 +25,7 @@
     "disableSources": true,
     "categorizeByGroup": false,
     "sort": ["static-first", "visibility"],
-    "name": "Web Component",
+    "name": "Slider Component",
     "plugin": ["typedoc-plugin-merge-modules"],
     "mergeModulesMergeMode": "module",
     "hideGenerator": true
