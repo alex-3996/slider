@@ -32,3 +32,9 @@ pin-component {
   left: 48px;
   top: 48px;
 }
+
+slider-component {
+  display: block;
+  margin: 48px;
+  padding: 16px;
+}

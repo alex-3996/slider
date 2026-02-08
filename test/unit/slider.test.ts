@@ -72,7 +72,29 @@ composition("Template", () => {
       });
 
       then("template is defined", () => {
-        expect(template).toBeDefined();
+        expect(template.innerHTML).toContain('<div class="slider-container">')
+      });
+
+      and("template contains a div with class slider-container", () => {
+        then("div with class slider-container contains a div with class slider-wrapper", () => {
+          expect(template.innerHTML).toContain('<div class="slider-wrapper">')
+        });
+
+        then("div with class slider-container contains a span with class value-display", () => {
+          expect(template.innerHTML).toContain('<span class="value-display">')
+        });
+
+        then("div with class slider-container contains a div with class track", () => {
+          expect(template.innerHTML).toContain('<div class="track">')
+        });
+
+        then("div with class slider-container contains a div with class fill", () => {
+          expect(template.innerHTML).toContain('<div class="fill">')
+        });
+        
+        then("div with class slider-container contains a div with class thumb", () => {
+          expect(template.innerHTML).toContain('<div class="thumb">')
+        });
       });
 
       and("a new component is added to DOM", () => {
