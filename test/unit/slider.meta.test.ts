@@ -33,6 +33,12 @@ import {
         });
       });
     });
+
+    and("Attributes is an object", () => {
+      then("Attributes has VISIBLE", () => {
+        expect(Attributes.VISIBLE).toBe("visible");
+      });
+    });
   });
   
   metadata("States", () => {
